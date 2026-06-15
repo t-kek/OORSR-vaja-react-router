@@ -10,7 +10,7 @@ function SportActivityCard({activity}:SportActivityCardProps){
         <div>
             <h2>{activity.nameOfActivity}</h2>
             <p>Type: {activity.type}</p>
-            <Link to={`/activity/${activity.id}`}>
+            <Link to={`/activities/${activity.id}`}>
                 Podrobnosti
             </Link>
         </div>       

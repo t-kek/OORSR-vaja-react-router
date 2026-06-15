@@ -1,10 +1,11 @@
 import SportActivityList from "../components/SportActivityList";
-import type { SportActivityOutletContext } from "../types";
-import { useOutletContext } from "react-router";
+import type { SportActivity } from "../types";
 
-function ActivityListPage() {
-  const { activities } = useOutletContext<SportActivityOutletContext>();
-  
+type ActivityListPageProps = {
+  activities: SportActivity[]
+}
+
+function ActivityListPage({activities}: ActivityListPageProps) {
   return (
     
     <section>

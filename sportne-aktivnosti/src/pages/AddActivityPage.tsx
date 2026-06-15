@@ -1,24 +1,32 @@
-import { useNavigate, useOutletContext } from "react-router";
+import { useNavigate } from "react-router-dom";
 import AddSportActivityForm from "../components/AddSportActivityForm";
-import { type NewActivity, type SportActivityOutletContext } from "../types";
+import type { NewActivity } from "../types";
 
-function AddActivityPage(){
+type AddActivityPageProps = {
+  onAddActivity: (newActivity: NewActivity) => void;
+};
 
-    const {addActivity} = useOutletContext<SportActivityOutletContext>();
-    
-    const navigate = useNavigate();
+function AddActivityPage({
+  onAddActivity,
+}: AddActivityPageProps) {
+  const navigate = useNavigate();
 
-    function hadnleAddActivity(newActivityData: NewActivity){
-        addActivity(newActivityData)
-        navigate("/");
-    }
+  function handleAddActivity(
+    newActivityData: NewActivity
+  ) {
+    onAddActivity(newActivityData);
+    navigate("/");
+  }
 
-    return(
-        <main>
-            <h2>Dodaj sportno aktivnost</h2>
-            <AddSportActivityForm onAddActivity={hadnleAddActivity}/>
-        </main>
-    );
+  return (
+    <section>
+      <h2>Dodaj športno aktivnost</h2>
+
+      <AddSportActivityForm
+        onAddActivity={handleAddActivity}
+      />
+    </section>
+  );
 }
 
 export default AddActivityPage;

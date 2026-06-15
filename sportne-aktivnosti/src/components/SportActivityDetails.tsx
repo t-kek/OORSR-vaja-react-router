@@ -8,7 +8,7 @@ function SportActivityDetails({activity}: SportActivityDetailsProps){
     return(
         <div>
             <h2>{activity.nameOfActivity}</h2>
-            <p>Type: {activity.nameOfActivity}</p>
+            <p>Type: {activity.type}</p>
             <p>Date: {activity.date}</p>
             <p>Location: {activity.location}</p>
         </div>

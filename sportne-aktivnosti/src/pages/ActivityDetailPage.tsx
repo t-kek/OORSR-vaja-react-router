@@ -1,32 +1,45 @@
+import { Link, useParams } from "react-router-dom";
 import SportActivityDetails from "../components/SportActivityDetails";
-import { useOutletContext, useParams, Link } from "react-router";
-import type {SportActivityOutletContext} from "../types"
+import type { SportActivity } from "../types";
 
+type ActivityDetailPageProps = {
+  activities: SportActivity[];
+};
 
-function ActivityDetailPage(){
-    const {id}= useParams();
-    
-    const { activities } =
-        useOutletContext<SportActivityOutletContext>();
-    const activity = activities.find(
-        (act) => act.id === Number(id)
+function ActivityDetailPage({
+  activities,
+}: ActivityDetailPageProps) {
+  const { id } = useParams();
+
+  const activity = activities.find(
+    (activity) => activity.id === Number(id)
+  );
+
+  if (!activity) {
+    return (
+      <section>
+        <h2>Aktivnost ne obstaja</h2>
+
+        <Link to="/">
+          Nazaj na seznam
+        </Link>
+      </section>
     );
+  }
 
-    if(!activity){
-        return(
-            <section>
-                <h3>Aktivnost ne obstaja</h3>
-                <Link to="/">Nazaj na seznam</Link>
-            </section>
-        );
-    }
+  return (
+    <section>
+      <h1>Podrobnosti športnega dogodka</h1>
 
-    return(
-        <main>
-            <h1>Podrobnosti športnega dogodka</h1>
-            <SportActivityDetails activity={activity}/>
-        </main>
-    );
+      <SportActivityDetails
+        activity={activity}
+      />
+
+      <Link to="/">
+        Nazaj na seznam
+      </Link>
+    </section>
+  );
 }
 
 export default ActivityDetailPage;
